@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/authentication/static/css/main.8c8b27cf.chunk.css",
+    "main.js": "/authentication/static/js/main.418c5b56.chunk.js",
+    "main.js.map": "/authentication/static/js/main.418c5b56.chunk.js.map",
+    "runtime-main.js": "/authentication/static/js/runtime-main.fb3947ed.js",
+    "runtime-main.js.map": "/authentication/static/js/runtime-main.fb3947ed.js.map",
+    "static/js/2.77610d1b.chunk.js": "/authentication/static/js/2.77610d1b.chunk.js",
+    "static/js/2.77610d1b.chunk.js.map": "/authentication/static/js/2.77610d1b.chunk.js.map",
+    "static/js/3.72d5434a.chunk.js": "/authentication/static/js/3.72d5434a.chunk.js",
+    "static/js/3.72d5434a.chunk.js.map": "/authentication/static/js/3.72d5434a.chunk.js.map",
+    "index.html": "/authentication/index.html",
+    "static/css/main.8c8b27cf.chunk.css.map": "/authentication/static/css/main.8c8b27cf.chunk.css.map",
+    "static/js/2.77610d1b.chunk.js.LICENSE.txt": "/authentication/static/js/2.77610d1b.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/authentication/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fb3947ed.js",
+    "static/js/2.77610d1b.chunk.js",
+    "static/css/main.8c8b27cf.chunk.css",
+    "static/js/main.418c5b56.chunk.js"
+  ]
+}
