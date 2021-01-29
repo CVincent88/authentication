@@ -1,11 +1,17 @@
+import { useState } from 'react'
+
 import styled from 'styled-components'
+import eye from './images/eye-solid.svg'
+import eye_closed from './images/eye-closed-solid.svg'
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   border-radius: 10px;
   padding: 20px;
+  height: 40vh;
 `;
 
 const Title = styled.span`
@@ -13,21 +19,17 @@ const Title = styled.span`
   letter-spacing: 1px;
 `;
 
-const Form = styled.form`
+const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-`;
-
-const InputContainer = styled.div`
+  justify-content: space-around;
   position: relative;
+  margin-top: 10px;
 `;
 
 const Input = styled.input`
   padding: 10px;
   border: none;
-  margin-top: 10px;
   :focus{
     outline: none;
     & + .underline{
@@ -35,6 +37,14 @@ const Input = styled.input`
       width: 100%;
     }
   }
+`;
+
+const Img = styled.img`
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
 `;
 
 const Underline = styled.span`
@@ -51,27 +61,40 @@ const Button = styled.button`
   font-size: 14px;
 `;
 
-function Signin({ handleSubmitLogin }) {
+function Signin({ handleOnSubmitSignin }) {
+
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false)
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handlePasswordVisibility = () => {
+    setIsPasswordVisible(prevState => prevState = !prevState)
+  }
+
   return(
     <Container className="form">
       <Title>Log In</Title>
-      <Form onSubmit={() => handleSubmitLogin()}>
-        <InputContainer className="inputContainer">
-          <Input 
-            type="text"
-            placeholder="Email"
-          />
-          <Underline className="underline"></Underline>
-        </InputContainer>
-        <InputContainer>
-          <Input 
-            type="password"
-            placeholder="Password"
-          />
-          <Underline className="underline"></Underline>
-        </InputContainer>
-        <Button type="submit">Submit</Button>
-      </Form>
+      <InputContainer className="inputContainer">
+        <Input 
+          type="text"
+          placeholder="Email"
+          value={email}
+          onChange={(text) => setEmail(text.target.value)}
+        />
+        <Underline className="underline"></Underline>
+      </InputContainer>
+      <InputContainer>
+        <Input 
+          type={isPasswordVisible ? "text" : "password"}
+          placeholder="Password"
+          value={password}
+          onChange={(text) => setPassword(text.target.value)}
+        />
+        <Underline className="underline"></Underline>
+        <Img onClick={() => handlePasswordVisibility()} src={isPasswordVisible ? eye_closed : eye} alt="Logo view password"/>
+      </InputContainer>
+      <Button onClick={() => handleOnSubmitSignin(email, password)} type="submit">Submit</Button>
     </Container>
   )
 }
