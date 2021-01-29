@@ -11,7 +11,11 @@ const Container = styled.div`
   justify-content: space-between;
   border-radius: 10px;
   padding: 20px;
-  height: 40vh;
+  height: 50vh;
+  min-height: 250px;
+  max-height: 500px;
+  transform: ${props => props.active ? 'translateX(-50%)' : 'translateX(200px)'};
+  opacity: ${props => props.active ? '1' : '0'};
 `;
 
 const Title = styled.span`
@@ -61,7 +65,7 @@ const Button = styled.button`
   font-size: 14px;
 `;
 
-function Signup({ handleOnSubmitSignup }) {
+function Signup({ active, handleConnectDisplayChange, handleOnSubmitSignup }) {
 
   const [isPassword1Visible, setIsPassword1Visible] = useState(false)
   const [isPassword2Visible, setIsPassword2Visible] = useState(false)
@@ -79,7 +83,7 @@ function Signup({ handleOnSubmitSignup }) {
   }
 
   return(
-    <Container className="form">
+    <Container className="form" active={active}>
       <Title>Sign Up</Title>
       <InputContainer className="inputContainer">
         <Input 
@@ -114,6 +118,9 @@ function Signup({ handleOnSubmitSignup }) {
         <Img onClick={() => handlePasswordVisibility(2)} src={isPassword2Visible ? eye_closed : eye} alt="Logo view password"/>
       </InputContainer>
       <Button onClick={() => handleOnSubmitSignup(email, password1, password2)} type="submit">Submit</Button>
+      <Button onClick={() => handleConnectDisplayChange()}>
+        Sign Up
+      </Button>
     </Container>
   )
 }

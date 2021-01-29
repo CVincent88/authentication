@@ -7,12 +7,13 @@ import { lightTheme, darkTheme } from "./Components/Themes"
 import Signin from './Signin'
 import Signup from './Signup'
 
-const Header = styled.header`
-  width: 100vw;
-  height: 50px;
+const Header = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  height: 50px;
+  box-shadow: none;
+  padding: 0 10px
 `;
 
 const Container = styled.div`
@@ -23,6 +24,20 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   box-shadow: none;
+  position: relative;
+`;
+
+const Toggle = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+`;
+
+const ModuleContainer = styled.div`
+  width: 50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Button = styled.button`
@@ -104,22 +119,19 @@ function App() {
           <button onClick={themeToggler}>Switch Theme</button>
         </Header>
         <Container>
-        <p>Email: {registeredUser.email}</p>
-        <p>password: {registeredUser.password}</p>
-          {connectDisplay === 'signin' ?
-            <Signin handleOnSubmitSignin={handleOnSubmitSignin} />
-            : 
-            <Signup registerUser={registerUser} handleOnSubmitSignup={handleOnSubmitSignup}/> 
-          }
-          <Button 
-            onClick={() => handleConnectDisplayChange()}
-          >
-            {connectDisplay === 'signin' ?
-              'Sign Up'
-              : 
-              'Sign In'
-            }
-          </Button>
+          <ModuleContainer>
+            <Signin 
+              handleOnSubmitSignin={handleOnSubmitSignin} 
+              handleConnectDisplayChange={handleConnectDisplayChange} 
+              active={connectDisplay === 'signin' ? true : false}
+            />
+            <Signup 
+              registerUser={registerUser} 
+              handleOnSubmitSignup={handleOnSubmitSignup} 
+              handleConnectDisplayChange={handleConnectDisplayChange} 
+              active={connectDisplay === 'signup' ? true : false}
+            />
+          </ModuleContainer>
         </Container>
       </>
     </ThemeProvider>

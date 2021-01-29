@@ -12,7 +12,7 @@ export const GlobalStyles = createGlobalStyle`
 
   .form {
     box-shadow: ${({ theme }) => theme.form.shadow};
-    transition: box-shadow .3s linear;
+    transition: all .3s linear;
   }
 
   .underline {
@@ -23,7 +23,7 @@ export const GlobalStyles = createGlobalStyle`
   input {
     background-color: ${({ theme }) => theme.input.background};
     color: ${({ theme }) => theme.text};
-    transition: background color 0.30s linear;
+    transition: all 0.30s linear;
     position: relative;
     ::placeholder{
       color: ${({ theme }) => theme.text};

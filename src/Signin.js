@@ -4,14 +4,18 @@ import styled from 'styled-components'
 import eye from './images/eye-solid.svg'
 import eye_closed from './images/eye-closed-solid.svg'
 
-const Container = styled.div`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   border-radius: 10px;
   padding: 20px;
-  height: 40vh;
+  height: 50vh;
+  min-height: 250px;
+  max-height: 500px;
+  transform: ${props => props.active ? 'translateX(50%)' : 'translateX(-200px)'};
+  opacity: ${props => props.active ? '1' : '0'};
 `;
 
 const Title = styled.span`
@@ -61,7 +65,7 @@ const Button = styled.button`
   font-size: 14px;
 `;
 
-function Signin({ handleOnSubmitSignin }) {
+function Signin({ active, handleConnectDisplayChange, handleOnSubmitSignin }) {
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 
@@ -73,8 +77,8 @@ function Signin({ handleOnSubmitSignin }) {
   }
 
   return(
-    <Container className="form">
-      <Title>Log In</Title>
+    <Wrapper className="form" active={active}>
+      <Title>Sign In</Title>
       <InputContainer className="inputContainer">
         <Input 
           type="text"
@@ -84,7 +88,7 @@ function Signin({ handleOnSubmitSignin }) {
         />
         <Underline className="underline"></Underline>
       </InputContainer>
-      <InputContainer>
+      <InputContainer >
         <Input 
           type={isPasswordVisible ? "text" : "password"}
           placeholder="Password"
@@ -94,8 +98,16 @@ function Signin({ handleOnSubmitSignin }) {
         <Underline className="underline"></Underline>
         <Img onClick={() => handlePasswordVisibility()} src={isPasswordVisible ? eye_closed : eye} alt="Logo view password"/>
       </InputContainer>
-      <Button onClick={() => handleOnSubmitSignin(email, password)} type="submit">Submit</Button>
-    </Container>
+      <Button 
+        onClick={() => handleOnSubmitSignin(email, password)} 
+        type="submit" 
+      >
+        Submit
+      </Button>
+      <Button onClick={() => handleConnectDisplayChange()}>
+        Sign Up
+      </Button>
+    </Wrapper>
   )
 }
 
