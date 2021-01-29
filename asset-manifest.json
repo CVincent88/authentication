@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/authentication/static/css/main.4a75e99a.chunk.css",
-    "main.js": "/authentication/static/js/main.bf9c56a1.chunk.js",
-    "main.js.map": "/authentication/static/js/main.bf9c56a1.chunk.js.map",
+    "main.css": "/authentication/static/css/main.68bb2a5d.chunk.css",
+    "main.js": "/authentication/static/js/main.b3003ffe.chunk.js",
+    "main.js.map": "/authentication/static/js/main.b3003ffe.chunk.js.map",
     "runtime-main.js": "/authentication/static/js/runtime-main.e9413a2e.js",
     "runtime-main.js.map": "/authentication/static/js/runtime-main.e9413a2e.js.map",
     "static/js/2.7c92ae34.chunk.js": "/authentication/static/js/2.7c92ae34.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/3.fca05ab5.chunk.js": "/authentication/static/js/3.fca05ab5.chunk.js",
     "static/js/3.fca05ab5.chunk.js.map": "/authentication/static/js/3.fca05ab5.chunk.js.map",
     "index.html": "/authentication/index.html",
-    "static/css/main.4a75e99a.chunk.css.map": "/authentication/static/css/main.4a75e99a.chunk.css.map",
+    "static/css/main.68bb2a5d.chunk.css.map": "/authentication/static/css/main.68bb2a5d.chunk.css.map",
     "static/js/2.7c92ae34.chunk.js.LICENSE.txt": "/authentication/static/js/2.7c92ae34.chunk.js.LICENSE.txt",
     "static/media/eye-closed-solid.977da11a.svg": "/authentication/static/media/eye-closed-solid.977da11a.svg",
     "static/media/eye-solid.637d0a25.svg": "/authentication/static/media/eye-solid.637d0a25.svg"
@@ -18,7 +18,7 @@
   "entrypoints": [
     "static/js/runtime-main.e9413a2e.js",
     "static/js/2.7c92ae34.chunk.js",
-    "static/css/main.4a75e99a.chunk.css",
-    "static/js/main.bf9c56a1.chunk.js"
+    "static/css/main.68bb2a5d.chunk.css",
+    "static/js/main.b3003ffe.chunk.js"
   ]
 }
