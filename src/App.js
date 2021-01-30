@@ -11,7 +11,6 @@ const Header = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  ${'' /* height: 50px; */}
   box-shadow: none;
   padding: 0 10px
 `;
@@ -28,22 +27,10 @@ const Container = styled.div`
   overflow-x: hidden;
 `;
 
-const Toggle = styled.button`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-`;
-
 const ModuleContainer = styled.div`
-  ${'' /* width: 50vw; */}
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: none;
-`;
-
-const Button = styled.button`
-  margin-top: 15px;
 `;
 
 function App() {
@@ -126,12 +113,18 @@ function App() {
               handleOnSubmitSignin={handleOnSubmitSignin} 
               handleConnectDisplayChange={handleConnectDisplayChange} 
               active={connectDisplay === 'signin' ? true : false}
+              theme={theme}
+              emailRegex={emailRegex}
+              passwordRegex={passwordRegex}
             />
             <Signup 
               registerUser={registerUser} 
               handleOnSubmitSignup={handleOnSubmitSignup} 
               handleConnectDisplayChange={handleConnectDisplayChange} 
               active={connectDisplay === 'signup' ? true : false}
+              theme={theme}
+              emailRegex={emailRegex}
+              passwordRegex={passwordRegex}
             />
           </ModuleContainer>
         </Container>

@@ -1,29 +1,25 @@
 export const lightTheme = {
-  body: '#FFF',
-  text: '#363537',
-  toggleBorder: '#FFF',
-  background: '#363537',
-  form: {
-    shadow: '0 0 7px #7f807f',
-  },
-  input: {
-    borderColor: '#363537',
-    shadow: '0 0 5px #363537',
-    background: '#d3d3d3'
-  }
+  primary: '#fff',
+  secondary: '#363537',
+  tertiary: '#E3E3E3',
+  main_background: '#fff',
+  text: '#000000',
+  link: '1B2AFC',
+  border: '1px solid #363537',
+  underline: '#363537',
+  main_shadow: '0 0 7px #7f807f',
+  navButton_shadow: '0 0 4px #7f807f'
 }
 
 export const darkTheme = {
-  body: '#363537',
-  text: '#FAFAFA',
-  toggleBorder: '#6B8096',
-  background: '#999',
-  form: {
-    shadow: '0px 0 7px #000',
-  },
-  input: {
-    borderColor: '#00fbff',
-    shadow: '0 0 5px rgba(0, 251, 255, 1)',
-    background: '#414142'
-  }
+  primary: '#363537',
+  secondary: '#fff',
+  tertiary: '#616161',
+  main_background: '#363537',
+  text: '#fafafa',
+  link: '#00D7FE',
+  border: '1px solid #fff',
+  underline: '#00D7FE',
+  main_shadow: '0 0 7px #000',
+  navButton_shadow: '0 0 4px #000'
 }
