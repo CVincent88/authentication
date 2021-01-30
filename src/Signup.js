@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
 import styled from 'styled-components'
-import eye from './images/eye-solid.svg'
-import eye_closed from './images/eye-closed-solid.svg'
+
+import Input from './Components/Input'
 
 const Container = styled.div`
   display: flex;
@@ -11,9 +11,6 @@ const Container = styled.div`
   justify-content: space-between;
   border-radius: 10px;
   padding: 20px;
-  height: 50vh;
-  min-height: 250px;
-  max-height: 500px;
   transform: ${props => props.active ? 'translateX(-50%)' : 'translateX(200px)'};
   opacity: ${props => props.active ? '1' : '0'};
 `;
@@ -23,69 +20,64 @@ const Title = styled.span`
   letter-spacing: 1px;
 `;
 
-const InputContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  position: relative;
-  margin-top: 10px;
-`;
-
-const Input = styled.input`
-  padding: 10px;
-  border: none;
-  :focus{
-    outline: none;
-    & + .underline{
-      opacity: 1;
-      width: 100%;
-    }
-  }
-`;
-
-const Img = styled.img`
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-`;
-
-const Underline = styled.span`
-  display: block;
-  height: 2px;
-  opacity: 0;
-  width: 0%;
-  transition: all .3s linear
-`;
-
 const Button = styled.button`
   margin-top: 10px;
   padding: 5px;
   font-size: 14px;
 `;
 
-function Signup({ active, handleConnectDisplayChange, handleOnSubmitSignup }) {
+const Arrow = styled.span`
+  postition: relative;
+  left: 2px;
+  border-radius: 50%;
+  background-color: red;
+`;
 
-  const [isPassword1Visible, setIsPassword1Visible] = useState(false)
-  const [isPassword2Visible, setIsPassword2Visible] = useState(false)
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px 20px;
+  position: relative;
+  background-color: green;
+`;
+
+const ButtonText = styled.p`
+  font-size: 16;
+  margin: 0;
+`;
+
+function Signup({ active, handleConnectDisplayChange, handleOnSubmitSignup }) {
 
   const [email, setEmail] = useState('')
   const [password1, setPassword1] = useState('')
   const [password2, setPassword2] = useState('')
 
-  const handlePasswordVisibility = (password) => {
-    if(password === 1){
-      setIsPassword1Visible(prevState => prevState = !prevState)
-    }else{
-      setIsPassword2Visible(prevState => prevState = !prevState)
-    }
-  }
-
   return(
     <Container className="form" active={active}>
       <Title>Sign Up</Title>
-      <InputContainer className="inputContainer">
+        <Input 
+          originalType="text"
+          placeholder="email"
+          autoComplete="off"
+          value={email}
+          onChange={setEmail}
+        />
+        <Input
+          originalType="password"
+          placeholder="Password"
+          autoComplete="off"
+          value={password1}
+          onChange={setPassword1}
+        />
+        <Input 
+          originalType="password"
+          placeholder="Confirm password"
+          autoComplete="off"
+          value={password2}
+          onChange={setPassword2}
+        />
+      {/* <InputContainer className="inputContainer">
         <Input 
           type="text"
           placeholder="Email"
@@ -116,11 +108,12 @@ function Signup({ active, handleConnectDisplayChange, handleOnSubmitSignup }) {
         />
         <Underline className="underline"></Underline>
         <Img onClick={() => handlePasswordVisibility(2)} src={isPassword2Visible ? eye_closed : eye} alt="Logo view password"/>
-      </InputContainer>
+      </InputContainer> */}
       <Button onClick={() => handleOnSubmitSignup(email, password1, password2)} type="submit">Submit</Button>
-      <Button onClick={() => handleConnectDisplayChange()}>
-        Sign Up
-      </Button>
+      <ButtonWrapper onClick={() => handleConnectDisplayChange()}>
+        <Arrow>m</Arrow>
+        <ButtonText>Sign In</ButtonText>
+      </ButtonWrapper>
     </Container>
   )
 }

@@ -11,7 +11,7 @@ const Header = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  height: 50px;
+  ${'' /* height: 50px; */}
   box-shadow: none;
   padding: 0 10px
 `;
@@ -25,6 +25,7 @@ const Container = styled.div`
   align-items: center;
   box-shadow: none;
   position: relative;
+  overflow-x: hidden;
 `;
 
 const Toggle = styled.button`
@@ -34,10 +35,11 @@ const Toggle = styled.button`
 `;
 
 const ModuleContainer = styled.div`
-  width: 50vw;
+  ${'' /* width: 50vw; */}
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: none;
 `;
 
 const Button = styled.button`
