@@ -5,7 +5,7 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-size: 16px;
-    background: ${({ theme }) => theme.main_background};
+    background: ${({ theme }) => theme.primary};
     color: ${({ theme }) => theme.secondary};
     font-family: Tahoma, Helvetica, Arial, Roboto, sans-serif;
     transition: all 0.30s linear;
@@ -75,6 +75,10 @@ export const GlobalStyles = createGlobalStyle`
     border: ${({ theme }) => theme.border};
   }
 
-  
+  .theme-toggler {
+    background-color: ${({ theme }) => theme.primary};
+    box-shadow: ${({ theme }) => theme.main_shadow};
+    transition: all 0.30s linear;
+  }
   
   `;

@@ -7,6 +7,9 @@ import { lightTheme, darkTheme } from "./Components/Themes"
 import Signin from './Signin'
 import Signup from './Signup'
 
+import moon from './images/cloud-moon-solid.svg'
+import sun from './images/sun-solid.svg'
+
 const Header = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -31,6 +34,16 @@ const ModuleContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const ThemeToggler = styled.button`
+  border-radius: 50%;
+  padding: 5px;
+  border: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 20;
 `;
 
 function App() {
@@ -104,9 +117,14 @@ function App() {
      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <>
       <GlobalStyles/>
-        <Header>
-          <button onClick={themeToggler}>Switch Theme</button>
-        </Header>
+        {/* <Header>
+          <ThemeToggler className="theme-toggler" onClick={themeToggler}>
+            <img src={theme === 'light' ? moon : sun} alt="Toggle theme icon" />
+          </ThemeToggler>
+        </Header> */}
+        <ThemeToggler className="theme-toggler" onClick={themeToggler}>
+            <img src={theme === 'light' ? moon : sun} alt="Toggle theme icon" />
+        </ThemeToggler>
         <Container>
           <ModuleContainer>
             <Signin 
