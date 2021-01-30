@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/authentication/static/css/main.68bb2a5d.chunk.css",
-    "main.js": "/authentication/static/js/main.85d8e93f.chunk.js",
-    "main.js.map": "/authentication/static/js/main.85d8e93f.chunk.js.map",
+    "main.js": "/authentication/static/js/main.1bf6ee7a.chunk.js",
+    "main.js.map": "/authentication/static/js/main.1bf6ee7a.chunk.js.map",
     "runtime-main.js": "/authentication/static/js/runtime-main.3d7243fb.js",
     "runtime-main.js.map": "/authentication/static/js/runtime-main.3d7243fb.js.map",
     "static/js/2.28d293f6.chunk.js": "/authentication/static/js/2.28d293f6.chunk.js",
@@ -16,13 +16,15 @@
     "static/media/chevron-left-white.65578f22.svg": "/authentication/static/media/chevron-left-white.65578f22.svg",
     "static/media/chevron-right-black.e32c85b2.svg": "/authentication/static/media/chevron-right-black.e32c85b2.svg",
     "static/media/chevron-right-white.0c61e753.svg": "/authentication/static/media/chevron-right-white.0c61e753.svg",
+    "static/media/cloud-moon-solid.9d38ca39.svg": "/authentication/static/media/cloud-moon-solid.9d38ca39.svg",
     "static/media/eye-closed-solid.977da11a.svg": "/authentication/static/media/eye-closed-solid.977da11a.svg",
-    "static/media/eye-solid.637d0a25.svg": "/authentication/static/media/eye-solid.637d0a25.svg"
+    "static/media/eye-solid.637d0a25.svg": "/authentication/static/media/eye-solid.637d0a25.svg",
+    "static/media/sun-solid.78cf9218.svg": "/authentication/static/media/sun-solid.78cf9218.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.3d7243fb.js",
     "static/js/2.28d293f6.chunk.js",
     "static/css/main.68bb2a5d.chunk.css",
-    "static/js/main.85d8e93f.chunk.js"
+    "static/js/main.1bf6ee7a.chunk.js"
   ]
 }
