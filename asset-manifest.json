@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/authentication/static/css/main.feac7003.chunk.css",
-    "main.js": "/authentication/static/js/main.7c460f1f.chunk.js",
-    "main.js.map": "/authentication/static/js/main.7c460f1f.chunk.js.map",
+    "main.js": "/authentication/static/js/main.407f7783.chunk.js",
+    "main.js.map": "/authentication/static/js/main.407f7783.chunk.js.map",
     "runtime-main.js": "/authentication/static/js/runtime-main.3d7243fb.js",
     "runtime-main.js.map": "/authentication/static/js/runtime-main.3d7243fb.js.map",
     "static/js/2.28d293f6.chunk.js": "/authentication/static/js/2.28d293f6.chunk.js",
@@ -25,6 +25,6 @@
     "static/js/runtime-main.3d7243fb.js",
     "static/js/2.28d293f6.chunk.js",
     "static/css/main.feac7003.chunk.css",
-    "static/js/main.7c460f1f.chunk.js"
+    "static/js/main.407f7783.chunk.js"
   ]
 }
