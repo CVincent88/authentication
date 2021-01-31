@@ -24,10 +24,9 @@ export const GlobalStyles = createGlobalStyle`
   input {
     background-color: ${({ theme }) => theme.tertiary};
     color: ${({ theme }) => theme.text};
-    transition: all 0.30s linear;
+    transition: all .3s linear;
     ::placeholder{
       color: ${({ theme }) => theme.text};
-      transition: color 0.30s linear;
     }
   }
 

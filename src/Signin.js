@@ -70,10 +70,58 @@ function Signin({
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [emailBorder, setEmailBorder] = useState('none')
+  const [password1Border, setPassword1Border] = useState('none')
+
+  const setBorder = (regex, inputPurpose, input) => {
+    if(inputPurpose === 'email'){
+      if(input === ''){
+        setEmailBorder('none')
+      }else if(input !== '' && !regex.test(input)){
+        setEmailBorder('invalid')
+      }else if(input !== '' && regex.test(input)){
+        setEmailBorder('valid')
+      }
+    }else if(inputPurpose === 'password'){
+      if(input === ''){
+        setPassword1Border('none')
+      }else if(input !== '' && !regex.test(input)){
+        setPassword1Border('invalid')
+      }else if(input !== '' && regex.test(input)){
+        setPassword1Border('valid')
+      }
+    }
+  }
+
+  const saveInput = (inputPurpose, input) => {
+    switch (inputPurpose) {
+      case 'email':
+        setEmail(input)
+        break;
+      case 'password':
+        setPassword(input)
+        break;
+      default:
+        break;
+    }
+  }
+
+  const handleOnChangeInput = (regex, inputPurpose, input) => {
+    saveInput(inputPurpose, input)
+    setBorder(regex, inputPurpose, input)
+  }
 
   const onClickToSignUp = () => {
     setLoginErrorVisible(false)
     handleConnectDisplayChange()
+  }
+
+  const onClickSubmitSignin = () => {
+    handleOnSubmitSignin(email, password)
+    setEmail('');
+    setPassword('')
+    setEmailBorder('none')
+    setPassword1Border('none')
   }
 
   return(
@@ -86,8 +134,9 @@ function Signin({
         placeholder="Email"
         autoComplete="off"
         value={email}
-        saveInput={setEmail}
         emailRegex={emailRegex}
+        onChangeInput={handleOnChangeInput}
+        border={emailBorder}
       />
       <Input
         originalType="password"
@@ -95,11 +144,12 @@ function Signin({
         placeholder="Password"
         autoComplete="off"
         value={password}
-        saveInput={setPassword}
         passwordRegex={passwordRegex}
+        onChangeInput={handleOnChangeInput}
+        border={password1Border}
       />
       <PasswordLink href="#">Forgot your password ?</PasswordLink>
-      <SubmitButton className="submit-button" type="submit" onClick={() => handleOnSubmitSignin(email, password)}>Confirm</SubmitButton>
+      <SubmitButton className="submit-button" type="submit" onClick={() => onClickSubmitSignin()}>Confirm</SubmitButton>
       <ToSignUp className="navButton" onClick={() => onClickToSignUp()}>
         <ButtonText >Sign Up</ButtonText>
         <RightArrow src={theme === 'light' ? arrow_right_black : arrow_right_white} alt="Icon to SignUp" />

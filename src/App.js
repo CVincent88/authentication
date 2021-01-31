@@ -45,6 +45,7 @@ const ThemeToggler = styled.button`
   top: 20px;
   right: 20px;
   z-index: 20;
+  cursor: pointer;
 `;
 
 const Footer = styled.div`
@@ -126,7 +127,7 @@ function App() {
     if(checkPasswordConformity(password1, password2) && checkInputValidity(emailRegex, email)){
       if(registeredUser.email !== email){
         registerUser(email, password2)
-        return
+        return true
       }else{
         setSignupErrorVisible(true)
         return
@@ -144,6 +145,7 @@ function App() {
         if(loginErrorVisible){
           setLoginErrorVisible(false)
         }
+        return
       }else{
         setLoginErrorVisible(true)
       }

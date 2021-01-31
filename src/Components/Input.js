@@ -19,9 +19,9 @@ const Container = styled.div`
 const InputBox = styled.input`
   padding: 10px;
   border: ${
-    props => props.status === 'none' ? 
+    props => props.border === 'none' ? 
       '1px solid transparent' 
-      : props.status === 'valid' ?
+      : props.border === 'valid' ?
         '1px solid #2DC01B'
         :
         '1px solid red'
@@ -53,11 +53,20 @@ const Underline = styled.span`
   width: 0%;
 `;
 
-function Input({ originalType, placeholder, value, saveInput, emailRegex, passwordRegex, inputPurpose, password1 }) {
+function Input({ 
+  originalType, 
+  placeholder, 
+  value, 
+  emailRegex, 
+  passwordRegex, 
+  inputPurpose, 
+  password1,
+  onChangeInput,
+  border
+}) {
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false)
   const [inputType, setInputType] = useState(originalType)
-  const [borderType, setBorderType] = useState('none')
   const [displayHelpbox, setDisplayHelpbox] = useState(false)
   const [passwordConditions, setPasswordConditions] = useState({
     hasEnoughCharacter: false,
@@ -184,34 +193,14 @@ function Input({ originalType, placeholder, value, saveInput, emailRegex, passwo
     setIsPasswordVisible(prevState => prevState = !prevState)
   }
 
-  const setBorder = (regex, input) => {
+  const onChange = (input) => {
 
-    if(inputPurpose !== 'confirm-password'){
-      if(input === ''){
-        setBorderType('none')
-      }else if(input !== '' && !regex.test(input)){
-        setBorderType('invalid')
-      }else if(input !== '' && regex.test(input)){
-        setBorderType('valid')
-      }
-    }else{
-      if(input === ''){
-        setBorderType('none')
-      }else if(input !== '' && password1 !== input){
-        setBorderType('invalid')
-      }else{
-        setBorderType('valid')
-      }
-    }
-  }
-
-  const handleOnChange = (input) => {
-    saveInput(input)
-
-    if(originalType === 'password'){
-      setBorder(passwordRegex, input)
-    }else{
-      setBorder(emailRegex, input)
+    if(inputPurpose === 'email'){
+      onChangeInput(emailRegex, inputPurpose, input)
+    }else if(inputPurpose === 'password'){
+      onChangeInput(passwordRegex, inputPurpose, input)
+    }else if(inputPurpose === 'confirm-password'){
+      onChangeInput(passwordRegex, inputPurpose, input)
     }
 
     setHelpBox(input)
@@ -225,8 +214,8 @@ function Input({ originalType, placeholder, value, saveInput, emailRegex, passwo
         placeholder={placeholder}
         autoComplete="off"
         value={value}
-        onChange={(text) => handleOnChange(text.target.value)}
-        status={borderType}
+        onChange={(text) => onChange(text.target.value)}
+        border={border}
       />
       <Underline className="underline"></Underline>
       {originalType === 'password' &&
