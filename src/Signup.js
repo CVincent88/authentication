@@ -37,7 +37,6 @@ const ToSignIn = styled.div`
   align-items: center;
   border-radius: 20px;
   position: relative;
-  background-color: #fff;
   align-self: flex-start;
   cursor: pointer;
   transition: box-shadow .2s linear;

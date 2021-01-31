@@ -7,8 +7,6 @@ const Container = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  background-color: #fff;
-  z-index: 10;
 `;
 
 const List = styled.ul`

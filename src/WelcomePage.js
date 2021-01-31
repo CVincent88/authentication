@@ -14,7 +14,7 @@ const Container = styled.div`
 
 const MainTitle = styled.h1`
   font-size: 50px;
-  align-text: center;
+  text-align: center;
 `;
 
 const LogoutButton = styled.button`
