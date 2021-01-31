@@ -80,5 +80,9 @@ export const GlobalStyles = createGlobalStyle`
     box-shadow: ${({ theme }) => theme.main_shadow};
     transition: all 0.30s linear;
   }
+
+  .error-text {
+    color: ${({ theme }) => theme.error_text};
+  }
   
   `;

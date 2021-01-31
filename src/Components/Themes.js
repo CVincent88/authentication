@@ -7,7 +7,8 @@ export const lightTheme = {
   border: '1px solid #363537',
   underline: '#363537',
   main_shadow: '0 0 7px #7f807f',
-  navButton_shadow: '0 0 4px #7f807f'
+  navButton_shadow: '0 0 4px #7f807f',
+  error_text: '#363537'
 }
 
 export const darkTheme = {
@@ -19,5 +20,6 @@ export const darkTheme = {
   border: '1px solid #fff',
   underline: '#00D7FE',
   main_shadow: '0 0 7px #000',
-  navButton_shadow: '0 0 4px #000'
+  navButton_shadow: '0 0 4px #000',
+  error_text: '#363537'
 }

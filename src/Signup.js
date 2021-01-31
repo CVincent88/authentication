@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import Input from './Components/Input'
 import Title from './Components/Title'
-import SubmitButton from './Components/SubmitButton'
+import SignupError from './Components/SignupError'
 import arrow_left_black from './images/chevron-left-black.svg'
 import arrow_left_white from './images/chevron-left-white.svg'
 
@@ -15,9 +15,18 @@ const Container = styled.div`
   justify-content: space-between;
   border-radius: 10px;
   padding: 20px;
-  transform: ${props => props.active ? 'translateX(-40%)' : 'translateX(130%)'};
+  transform: ${props => props.active ? 'translateX(-50%)' : 'translateX(130%)'};
   opacity: ${props => props.active ? '1' : '0'};
   visibility: ${props => props.active ? 'visible' : 'hidden'};
+  position: relative;
+`;
+
+const SubmitButton = styled.button`
+  border-radius: 5px;
+  margin: 10px 0 20px 0;
+  padding: 5px;
+  font-size: 14px;
+  cursor: pointer;
 `;
 
 const ToSignIn = styled.div`
@@ -43,15 +52,29 @@ const ButtonText = styled.p`
   margin: 0 0 0 5px;
 `;
 
-function Signup({ active, handleConnectDisplayChange, handleOnSubmitSignup, theme, emailRegex, passwordRegex }) {
+function Signup({ 
+  active, 
+  handleConnectDisplayChange, 
+  handleOnSubmitSignup, 
+  theme, 
+  emailRegex, 
+  passwordRegex,
+  signupErrorVisible,
+  setSignupErrorVisible
+}) {
 
   const [email, setEmail] = useState('')
   const [password1, setPassword1] = useState('')
   const [password2, setPassword2] = useState('')
 
+  const onClickToSignIn = () => {
+    setSignupErrorVisible(false)
+    handleConnectDisplayChange()
+  }
 
   return(
     <Container className="form" active={active}>
+      <SignupError active={signupErrorVisible}/>
       <Title value="Sign Up" />
         <Input 
           originalType="text"
@@ -81,8 +104,8 @@ function Signup({ active, handleConnectDisplayChange, handleOnSubmitSignup, them
           passwordRegex={passwordRegex}
           password1={password1}
         />
-      <SubmitButton value='Confirm' type="submit" onClick={() => handleOnSubmitSignup(email, password1, password2)}/>
-      <ToSignIn className="navButton" onClick={() => handleConnectDisplayChange()}>
+      <SubmitButton className="submit-button" type="submit" onClick={() => handleOnSubmitSignup(email, password1, password2)}>Confirm</SubmitButton>
+      <ToSignIn className="navButton" onClick={() => onClickToSignIn()}>
         <LeftArrow src={theme === 'light' ? arrow_left_black : arrow_left_white} alt="Icon link to SignIn" />
         <ButtonText>Sign In</ButtonText>
       </ToSignIn>

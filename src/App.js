@@ -6,28 +6,29 @@ import { lightTheme, darkTheme } from "./Components/Themes"
 
 import Signin from './Signin'
 import Signup from './Signup'
+import WelcomePage from './WelcomePage'
 
 import moon from './images/cloud-moon-solid.svg'
 import sun from './images/sun-solid.svg'
 
-const Header = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  box-shadow: none;
-  padding: 0 10px
+const Wrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: relative;
 `;
 
-const Container = styled.div`
-  width: 100vw;
-  height: calc(100vh - 50px);
+const ConnectionPage = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   box-shadow: none;
-  position: relative;
+  position: absolute;
+  top:0; left: 0; bottom: 0; right: 0;
   overflow-x: hidden;
+  transform: ${props => props.active ? 'scaleY(1)' : 'scaleY(0)'};
+  transform-origin: top center;
+  transition: transform .3s linear
 `;
 
 const ModuleContainer = styled.div`
@@ -46,6 +47,21 @@ const ThemeToggler = styled.button`
   z-index: 20;
 `;
 
+const Footer = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  font-size: 12px;
+  display: ${props => props.active ? 'flex' : 'none'};
+  & p {
+    margin: 0;
+  }
+`;
+
 function App() {
 
   const [theme, setTheme] = useState('light');
@@ -54,12 +70,21 @@ function App() {
     email: '',
     password: ''
   })
+  const [isConnectionPageActive, setConnectionPageActive] = useState(true)
+  const [isWelcomePageActive, setWelcomePageActive] = useState(false)
+  const [loginErrorVisible, setLoginErrorVisible] = useState(false)
+  const [signupErrorVisible, setSignupErrorVisible] = useState(false)
 
   const emailRegex = /^[a-zA-Z0-9.-]{2,20}@([a-zA-Z0-9]{2,15})+(\.[a-zA-Z]{2,3})+((\.[a-zA-Z]{2,3})?)+$/
   const passwordRegex = /^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&^*])(?!.*[\s])(?!.*[<>]).*$/
 
   const themeToggler = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light')
+  }
+
+  const pageToggler = () => {
+    setConnectionPageActive(prevState => prevState = !prevState);
+    setWelcomePageActive(prevState => prevState = !prevState)
   }
 
   const handleConnectDisplayChange = () => {
@@ -89,27 +114,44 @@ function App() {
       email: email,
       password: password
     })
+    pageToggler()
   }
 
   const handleOnSubmitSignup = (email, password1, password2) => {
+
+    if(signupErrorVisible === true){
+      setSignupErrorVisible(false)
+    }
+
     if(checkPasswordConformity(password1, password2) && checkInputValidity(emailRegex, email)){
-      registerUser(email, password2)
+      if(registeredUser.email !== email){
+        registerUser(email, password2)
+        return
+      }else{
+        setSignupErrorVisible(true)
+        return
+      }
     }else{
-      // Deal with credentials not conform
-      console.log('The credentials do not match the regex')
+      // Credentials do not match regex
+      return
     }
   }
 
   const handleOnSubmitSignin = (email, password) => {
     if(checkInputValidity(passwordRegex, password) && checkInputValidity(emailRegex, email)){
       if(email === registeredUser.email && password === registeredUser.password){
-        console.log('Nice, you are logged in')
+        pageToggler()
+        if(loginErrorVisible){
+          setLoginErrorVisible(false)
+        }
       }else{
-        console.log('It seems your email or password do not match what we have on database');
+        setLoginErrorVisible(true)
       }
     }else{
-      // Deal with credentials not conform
-      console.log('The credentials do not match the regex')
+      if(loginErrorVisible){
+        setLoginErrorVisible(false)
+      }
+      return
     }
   }
 
@@ -117,35 +159,41 @@ function App() {
      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <>
       <GlobalStyles/>
-        {/* <Header>
+
+        <Wrapper>
           <ThemeToggler className="theme-toggler" onClick={themeToggler}>
-            <img src={theme === 'light' ? moon : sun} alt="Toggle theme icon" />
+              <img src={theme === 'light' ? moon : sun} alt="Toggle theme icon" />
           </ThemeToggler>
-        </Header> */}
-        <ThemeToggler className="theme-toggler" onClick={themeToggler}>
-            <img src={theme === 'light' ? moon : sun} alt="Toggle theme icon" />
-        </ThemeToggler>
-        <Container>
-          <ModuleContainer>
-            <Signin 
-              handleOnSubmitSignin={handleOnSubmitSignin} 
-              handleConnectDisplayChange={handleConnectDisplayChange} 
-              active={connectDisplay === 'signin' ? true : false}
-              theme={theme}
-              emailRegex={emailRegex}
-              passwordRegex={passwordRegex}
-            />
-            <Signup 
-              registerUser={registerUser} 
-              handleOnSubmitSignup={handleOnSubmitSignup} 
-              handleConnectDisplayChange={handleConnectDisplayChange} 
-              active={connectDisplay === 'signup' ? true : false}
-              theme={theme}
-              emailRegex={emailRegex}
-              passwordRegex={passwordRegex}
-            />
-          </ModuleContainer>
-        </Container>
+
+          <ConnectionPage active={isConnectionPageActive}>
+            <ModuleContainer>
+              <Signin 
+                handleOnSubmitSignin={handleOnSubmitSignin} 
+                handleConnectDisplayChange={handleConnectDisplayChange} 
+                active={connectDisplay === 'signin' ? true : false}
+                theme={theme}
+                emailRegex={emailRegex}
+                passwordRegex={passwordRegex}
+                loginErrorVisible={loginErrorVisible}
+                setLoginErrorVisible={setLoginErrorVisible}
+              />
+              <Signup 
+                handleOnSubmitSignup={handleOnSubmitSignup} 
+                handleConnectDisplayChange={handleConnectDisplayChange} 
+                active={connectDisplay === 'signup' ? true : false}
+                theme={theme}
+                emailRegex={emailRegex}
+                passwordRegex={passwordRegex}
+                signupErrorVisible={signupErrorVisible}
+                setSignupErrorVisible={setSignupErrorVisible}
+              />
+            </ModuleContainer>
+            <Footer active={isConnectionPageActive}>
+              <p>This is a demo version, you may only register one account at a time.</p>
+            </Footer>
+          </ConnectionPage>
+          <WelcomePage pageToggler={pageToggler} active={isWelcomePageActive}/>
+        </Wrapper>
       </>
     </ThemeProvider>
   );
